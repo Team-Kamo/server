@@ -3,7 +3,6 @@ package data
 import (
 	"OctaneServer/config"
 	"context"
-	"fmt"
 
 	"github.com/goccy/go-json"
 	"go.mongodb.org/mongo-driver/bson"
@@ -48,7 +47,6 @@ func (db *Mongo) Insert(table string, key string, data interface{}) error {
 }
 
 func (db *Mongo) Update(table string, key string, data interface{}) error {
-	fmt.Print(data)
 	_, err := db.client.Database(config.CurrentConfig.Db.Name).Collection(table).ReplaceOne(context.TODO(), bson.D{{Key: "key", Value: key}}, bson.D{{Key: "key", Value: key}, {Key: "value", Value: data}})
 	if err == mongo.ErrNoDocuments {
 		return ErrNoEntry

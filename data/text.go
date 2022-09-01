@@ -1,7 +1,6 @@
 package data
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/goccy/go-json"
@@ -56,7 +55,6 @@ func GetTextContent(id int64) (string, error) {
 	if err != nil {
 		return content.Text, err
 	}
-	fmt.Print(string(result))
 	err = json.Unmarshal(result, &content)
 	if err != nil {
 		return content.Text, err
