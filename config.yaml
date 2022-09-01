@@ -1,0 +1,12 @@
+port: 3000
+lang: "ja-JP"
+debug: true
+logformat: "${pid} [${ip}]:${port} ${status} - ${method} ${path}\n"
+root: /api/v1/
+db:
+  type: bbolt
+  uri: db/bbolt.db
+  name: octane
+storage:
+  type: local
+  uri: ./uploads

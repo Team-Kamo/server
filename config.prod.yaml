@@ -1,0 +1,16 @@
+port: 3000
+lang: "ja-JP"
+debug: false
+logformat: "${pid} [${ip}]:${port} ${status} - ${method} ${path}\n"
+root: /api/v1/
+db:
+  type: mongo
+  uri: mongo://mongo
+  name: octane
+storage:
+  type: s3
+  uri: http://s3:8333/
+  name: octane
+  endpoint: http://s3.example.com/
+  accesskey: access
+  secretkey: secret

@@ -1,0 +1,49 @@
+version: "3"
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    # environment:
+    #  MONGO_INITDB_ROOT_USERNAME: root
+    #  MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - internal
+    volumes:
+      - ./db:/data/db
+  
+  s3:
+    stop_grace_period: 1m
+    image: chrislusf/seaweedfs
+    command: server -dir=/data -s3.config=/config.json -s3
+    networks:
+      - external
+      - internal
+    volumes:
+    - s3:/data
+    - ./seaweed.json:/seaweed.json
+    ports:
+      - "8333:8333"
+
+  octane:
+    image: ghcr.io/team-kamo/server:latest
+    depends_on:
+      - db
+      - s3
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    networks:
+      - internal
+      - external
+    volumes:
+      - db:/OctaneServer/db
+
+volumes:
+  db:
+  s3:
+
+networks:
+  external:
+  internal:
+    internal: true

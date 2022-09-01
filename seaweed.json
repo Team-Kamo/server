@@ -1,0 +1,26 @@
+{
+    "identifies": [
+        {
+            "name": "octane",
+            "credentials": [
+                {
+                    "accessKey": "access",
+                    "secretKey": "secret"
+                }
+            ],
+            "actions": [
+                "Read",
+                "Write",
+                "List",
+                "Tagging",
+                "Admin"
+            ]
+        },
+        {
+            "name": "anonymous",
+            "actions": [
+                "Read"
+            ]
+        }
+    ]
+}
