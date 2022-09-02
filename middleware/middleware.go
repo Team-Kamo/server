@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"OctaneServer/config"
+	"OctaneServer/data"
 	"OctaneServer/definitions"
 
 	"github.com/gofiber/fiber/v2"
@@ -22,7 +23,10 @@ func New() fiber.Handler {
 				return c.Next()
 			}
 		}
-		c.Status(401)
+		c.Status(401).JSON(data.Error{
+			Code:   definitions.ERR_UNAUTHORIZED,
+			Reason: config.Msg[config.CurrentConfig.Lang].API.Error.Unauthorized,
+		})
 		return nil
 	}
 }

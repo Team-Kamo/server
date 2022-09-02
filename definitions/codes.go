@@ -11,6 +11,7 @@ const (
 	ERR_DEVICE_NOT_CONNECTED = "ERR_DEVICE_NOT_CONNECTED" // Device is not connected
 	ERR_CONTENT_MISMATCH     = "ERR_CONTENT_MISMATCH"     // Content crc hash or mime is wrong
 	ERR_BAD_HASH             = "ERR_BAD_HASH"             // Hash style is wrong
+	ERR_UNAUTHORIZED         = "ERR_UNAUTHORIZED"         // Bad token
 	//Enum
 	Faulty    = "faulty"
 	Degraded  = "degraded"
