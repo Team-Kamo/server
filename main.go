@@ -4,6 +4,7 @@ import (
 	"OctaneServer/config"
 	"OctaneServer/data"
 	"OctaneServer/handlers"
+	"OctaneServer/middleware"
 	"net/http"
 	"os"
 	"time"
@@ -47,6 +48,7 @@ func main() {
 	app.Use(compress.New())
 	app.Use(recover.New())
 	app.Use(etag.New())
+	app.Use(middleware.New())
 	app.Use(logger.New(logger.Config{Output: log.Logger, Format: config.CurrentConfig.LogFormat}))
 	app.Use(config.CurrentConfig.Root+"uploads", filesystem.New(filesystem.Config{
 		Root: http.Dir("./uploads"),

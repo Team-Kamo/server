@@ -17,4 +17,6 @@ const (
 	Healthy   = "healthy"
 	Clipboard = "clipboard"
 	File      = "file"
+	//Headers
+	HeaderToken = "X-Octane-API-Token"
 )

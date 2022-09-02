@@ -3,6 +3,7 @@ lang: "ja-JP"
 debug: true
 logformat: "${pid} [${ip}]:${port} ${status} - ${method} ${path}\n"
 root: /api/v1/
+token: []
 db:
   type: bbolt
   uri: db/bbolt.db

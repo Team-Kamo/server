@@ -3,6 +3,7 @@ lang: "ja-JP"
 debug: false
 logformat: "${pid} [${ip}]:${port} ${status} - ${method} ${path}\n"
 root: /api/v1/
+token: []
 db:
   type: mongo
   uri: mongo://mongo

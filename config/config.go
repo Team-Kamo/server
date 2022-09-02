@@ -17,6 +17,7 @@ type Config struct {
 	Root      string
 	Db        DbConfig
 	Storage   StorageConfig
+	Token     []string
 }
 
 type DbConfig struct {
