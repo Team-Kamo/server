@@ -9,6 +9,15 @@ import (
 
 const Room = "room"
 
+// RoomPost godoc
+// @Summary      Create room
+// @Description  Create new room
+// @Tags         create
+// @Accept       json,xml,x-www-form-urlencoded
+// @Success      200  {object}  data.RoomCreate
+// @Failure      401  {object}  data.Error
+// @Failure      500  {object}  data.Error
+// @Router       /room [post]
 func RoomPost(ctx *fiber.Ctx) error {
 	req := data.RoomCreateRequest{}
 	ok := readBody(ctx, &req)

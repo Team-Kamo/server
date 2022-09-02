@@ -36,6 +36,7 @@ type APIErrorStrings struct {
 	BadHash            string
 	ContentMismatch    string
 	MimeMismatch       string
+	Unauthorized       string
 }
 
 var (
@@ -70,6 +71,7 @@ func loadMsg() {
 				BadHash:            "ハッシュの形式が不正です。",
 				ContentMismatch:    "コンテンツの内容とステータスに記述されているハッシュ値が一致しません。",
 				MimeMismatch:       "ヘッダのmimeとステータスに記述されているmimeが一致しません。",
+				Unauthorized:       "トークンが不正です。",
 			},
 		},
 	}
@@ -99,6 +101,7 @@ func loadMsg() {
 				BadHash:            "Hash syntax is wrong.",
 				ContentMismatch:    "Mismatch detected between content and status hash.",
 				MimeMismatch:       "Mismatch detected between header mime and status mime.",
+				Unauthorized:       "Invalid token supplied.",
 			},
 		},
 	}

@@ -10,6 +10,17 @@ import (
 
 const Status = "room/*/status"
 
+// StatusGet godoc
+// @Summary      Get content status
+// @Description  Get content status of the room
+// @Tags         status
+// @Accept       json,xml,x-www-form-urlencoded
+// @Produce      json
+// @Param        id   path      int  true  "Room ID"
+// @Success      200  {object}  data.Status
+// @Failure      401  {object}  data.Error
+// @Failure      500  {object}  data.Error
+// @Router       /room/{id}/status [get]
 func StatusGet(ctx *fiber.Ctx) error {
 	id := idConvert(ctx)
 	if id == -1 {
@@ -23,6 +34,16 @@ func StatusGet(ctx *fiber.Ctx) error {
 	return ctx.JSON(status)
 }
 
+// StatusPut godoc
+// @Summary      Set content status
+// @Description  Set content status of the room
+// @Tags         status
+// @Accept       json,xml,x-www-form-urlencoded
+// @Param        id   path      int  true  "Room ID"
+// @Success      200
+// @Failure      401  {object}  data.Error
+// @Failure      500  {object}  data.Error
+// @Router       /room/{id}/status [put]
 func StatusPut(ctx *fiber.Ctx) error {
 	id := idConvert(ctx)
 	if id == -1 {
@@ -49,7 +70,7 @@ func StatusPut(ctx *fiber.Ctx) error {
 		genericError(ctx, 400, definitions.ERR_DEVICE_NOT_CONNECTED, config.Msg[config.CurrentConfig.Lang].API.Error.DeviceNotConnected)
 		return nil
 	}
-	// BLAKE2b-64
+	// BLAKE2b-256
 	if len(req.Hash) != 64 {
 		genericError(ctx, 400, definitions.ERR_BAD_HASH, config.Msg[config.CurrentConfig.Lang].API.Error.BadHash)
 		return nil
@@ -62,6 +83,16 @@ func StatusPut(ctx *fiber.Ctx) error {
 	return ctx.Send(nil)
 }
 
+// StatusDelete godoc
+// @Summary      Delete content status
+// @Description  Delete content status of the room
+// @Tags         status
+// @Accept       json,xml,x-www-form-urlencoded
+// @Param        id   path      int  true  "Room ID"
+// @Success      200
+// @Failure      401  {object}  data.Error
+// @Failure      500  {object}  data.Error
+// @Router       /room/{id}/status [delete]
 func StatusDelete(ctx *fiber.Ctx) error {
 	id := idConvert(ctx)
 	if id == -1 {

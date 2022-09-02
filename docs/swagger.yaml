@@ -1,0 +1,349 @@
+basePath: /api/v1
+definitions:
+  data.Device:
+    properties:
+      name:
+        type: string
+      timestamp:
+        type: integer
+    type: object
+  data.Error:
+    properties:
+      code:
+        type: string
+      reason:
+        type: string
+    type: object
+  data.Health:
+    properties:
+      health:
+        type: string
+      message:
+        type: string
+    type: object
+  data.Room:
+    properties:
+      devices:
+        items:
+          $ref: '#/definitions/data.Device'
+        type: array
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  data.RoomCreate:
+    properties:
+      id:
+        type: integer
+    type: object
+  data.Status:
+    properties:
+      device:
+        type: string
+      hash:
+        type: string
+      mime:
+        type: string
+      name:
+        type: string
+      timestamp:
+        type: integer
+      type:
+        type: string
+    type: object
+info:
+  contact:
+    name: GitHub
+    url: https://github.com/Team-Kamo/server
+  description: Server-side api of the Octane.
+  title: OctaneServer
+  version: v1
+paths:
+  /health:
+    get:
+      consumes:
+      - application/json
+      - text/xml
+      - application/x-www-form-urlencoded
+      description: get health status of the api server
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/data.Health'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/data.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/data.Error'
+      summary: Get health status
+      tags:
+      - health
+  /room:
+    post:
+      consumes:
+      - application/json
+      - text/xml
+      - application/x-www-form-urlencoded
+      description: Create new room
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/data.RoomCreate'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/data.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/data.Error'
+      summary: Create room
+      tags:
+      - create
+  /room/{id}:
+    delete:
+      consumes:
+      - application/json
+      - text/xml
+      - application/x-www-form-urlencoded
+      description: Delete room
+      parameters:
+      - description: Room ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/data.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/data.Error'
+      summary: Delete room
+      tags:
+      - room
+    get:
+      consumes:
+      - application/json
+      - text/xml
+      - application/x-www-form-urlencoded
+      description: Get status of the room
+      parameters:
+      - description: Room ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/data.Room'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/data.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/data.Error'
+      summary: Get room status
+      tags:
+      - room
+    post:
+      consumes:
+      - application/json
+      - text/xml
+      - application/x-www-form-urlencoded
+      description: Connect device to the room
+      parameters:
+      - description: Room ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/data.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/data.Error'
+      summary: Connect to the room
+      tags:
+      - room
+  /room/{id}/content:
+    delete:
+      description: Delete content to the room
+      parameters:
+      - description: Room ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/data.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/data.Error'
+      summary: Delete room content
+      tags:
+      - content
+    get:
+      description: Get content to the room
+      parameters:
+      - description: Room ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/data.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/data.Error'
+      summary: Get room content
+      tags:
+      - content
+    put:
+      description: Set content to the room
+      parameters:
+      - description: Room ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/data.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/data.Error'
+      summary: Set room content
+      tags:
+      - content
+  /room/{id}/status:
+    delete:
+      consumes:
+      - application/json
+      - text/xml
+      - application/x-www-form-urlencoded
+      description: Delete content status of the room
+      parameters:
+      - description: Room ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/data.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/data.Error'
+      summary: Delete content status
+      tags:
+      - status
+    get:
+      consumes:
+      - application/json
+      - text/xml
+      - application/x-www-form-urlencoded
+      description: Get content status of the room
+      parameters:
+      - description: Room ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/data.Status'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/data.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/data.Error'
+      summary: Get content status
+      tags:
+      - status
+    put:
+      consumes:
+      - application/json
+      - text/xml
+      - application/x-www-form-urlencoded
+      description: Set content status of the room
+      parameters:
+      - description: Room ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/data.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/data.Error'
+      summary: Set content status
+      tags:
+      - status
+securityDefinitions:
+  X-Octane-API-Token:
+    in: header
+    name: X-Octane-API-Token
+    type: apiKey
+swagger: "2.0"

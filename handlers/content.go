@@ -14,6 +14,15 @@ import (
 
 const Content = "room/*/content"
 
+// ContentPut godoc
+// @Summary      Set room content
+// @Description  Set content to the room
+// @Tags         content
+// @Param        id   path      int  true  "Room ID"
+// @Success      200
+// @Failure      401  {object}  data.Error
+// @Failure      500  {object}  data.Error
+// @Router       /room/{id}/content [put]
 func ContentPut(ctx *fiber.Ctx) error {
 	body := ctx.Body()
 	id := idConvert(ctx)
@@ -55,6 +64,15 @@ func ContentPut(ctx *fiber.Ctx) error {
 	return ctx.Send(nil)
 }
 
+// ContentDelete godoc
+// @Summary      Delete room content
+// @Description  Delete content to the room
+// @Tags         content
+// @Param        id   path      int  true  "Room ID"
+// @Success      200
+// @Failure      401  {object}  data.Error
+// @Failure      500  {object}  data.Error
+// @Router       /room/{id}/content [delete]
 func ContentDelete(ctx *fiber.Ctx) error {
 	id := idConvert(ctx)
 	if id == -1 {
@@ -85,6 +103,15 @@ func ContentDelete(ctx *fiber.Ctx) error {
 	return ctx.Send(nil)
 }
 
+// ContentGet godoc
+// @Summary      Get room content
+// @Description  Get content to the room
+// @Tags         content
+// @Param        id   path      int  true  "Room ID"
+// @Success      200
+// @Failure      401  {object}  data.Error
+// @Failure      500  {object}  data.Error
+// @Router       /room/{id}/content [get]
 func ContentGet(ctx *fiber.Ctx) error {
 	id := idConvert(ctx)
 	if id == -1 {
