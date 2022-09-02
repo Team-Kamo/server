@@ -10,4 +10,4 @@ FROM alpine
 COPY --from=build /go/src/OctaneServer/OctaneServer /go/src/OctaneServer/config.yaml /OctaneServer/
 RUN apk add --no-cache ca-certificates
 WORKDIR /OctaneServer
-ENTRYPOINT [ "/OctaneServer/OctaneServer" ]
+CMD [ "/OctaneServer/OctaneServer" ]
