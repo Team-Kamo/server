@@ -10,7 +10,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-var ExceptionsCount = 0
+var exceptionsCount = 0
 
 func internalException(ctx *fiber.Ctx, err error) {
 	errObj := data.Error{
@@ -21,11 +21,11 @@ func internalException(ctx *fiber.Ctx, err error) {
 	if err != nil {
 		log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.FiberResponse)
 	}
-	ExceptionsCount++
+	exceptionsCount++
 }
 
 func HouseKeeping() {
-	ExceptionsCount = 0
+	exceptionsCount = 0
 }
 
 func idConvert(ctx *fiber.Ctx) int64 {

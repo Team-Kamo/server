@@ -1,8 +1,10 @@
 package handlers
 
 import (
+	"OctaneServer/config"
 	"OctaneServer/data"
 	"OctaneServer/definitions"
+	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -20,5 +22,14 @@ const Health = "health"
 // @Failure     500 {object} data.Error
 // @Router      /health [get]
 func HealthGet(ctx *fiber.Ctx) error {
-	return ctx.JSON(data.Health{Health: definitions.Healthy})
+	health := data.Health{Health: definitions.Healthy}
+	//ToDo: Implement more smarter
+	if exceptionsCount > 50 {
+		health.Health = definitions.Faulty
+		health.Message = config.Msg[config.CurrentConfig.Lang].API.HealthTooManyError + strconv.Itoa(exceptionsCount)
+	} else if exceptionsCount > 10 {
+		health.Health = definitions.Degraded
+		health.Message = config.Msg[config.CurrentConfig.Lang].API.HealthTooManyError + strconv.Itoa(exceptionsCount)
+	}
+	return ctx.JSON(health)
 }
