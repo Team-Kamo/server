@@ -11,16 +11,16 @@ import (
 var RoomID = "room/*/"
 
 // RoomIDGet godoc
-// @Summary      Get room status
-// @Description  Get status of the room
-// @Tags         room
-// @Accept       json,xml,x-www-form-urlencoded
-// @Produce      json
-// @Param        id   path      int  true  "Room ID"
-// @Success      200  {object}  data.Room
-// @Failure      401  {object}  data.Error
-// @Failure      500  {object}  data.Error
-// @Router       /room/{id} [get]
+// @Summary     Get room status
+// @Description Get status of the room
+// @Tags        room
+// @Accept      json,xml,x-www-form-urlencoded,mpfd
+// @Produce     json
+// @Param       RoomCreateRequest body     data.RoomCreateRequest true "RoomCreateRequest"
+// @Success     200               {object} data.Room
+// @Failure     401               {object} data.Error
+// @Failure     500               {object} data.Error
+// @Router      /room/{id} [get]
 func RoomIDGet(ctx *fiber.Ctx) error {
 	id := idConvert(ctx)
 	if id == -1 {
@@ -35,15 +35,15 @@ func RoomIDGet(ctx *fiber.Ctx) error {
 }
 
 // RoomIDDelete godoc
-// @Summary      Delete room
-// @Description  Delete room
-// @Tags         room
-// @Accept       json,xml,x-www-form-urlencoded
-// @Param        id   path      int  true  "Room ID"
-// @Success      200
-// @Failure      401  {object}  data.Error
-// @Failure      500  {object}  data.Error
-// @Router       /room/{id} [delete]
+// @Summary     Delete room
+// @Description Delete room
+// @Tags        room
+// @Accept      json,xml,x-www-form-urlencoded,mpfd
+// @Param       id                 path int                     true "Room ID"
+// @Success     200
+// @Failure     401 {object} data.Error
+// @Failure     500 {object} data.Error
+// @Router      /room/{id} [delete]
 func RoomIDDelete(ctx *fiber.Ctx) error {
 	id := idConvert(ctx)
 	if id == -1 {
@@ -58,15 +58,16 @@ func RoomIDDelete(ctx *fiber.Ctx) error {
 }
 
 // RoomIDPost godoc
-// @Summary      Connect to the room
-// @Description  Connect device to the room
-// @Tags         room
-// @Accept       json,xml,x-www-form-urlencoded
-// @Param        id   path      int  true  "Room ID"
-// @Success      200
-// @Failure      401  {object}  data.Error
-// @Failure      500  {object}  data.Error
-// @Router       /room/{id} [post]
+// @Summary     Connect to the room
+// @Description Connect device to the room
+// @Tags        room
+// @Accept      json,xml,x-www-form-urlencoded,mpfd
+// @Param       RoomConnectRequest body data.RoomConnectRequest true "Room connect request"
+// @Param       id path int true "Room ID"
+// @Success     200
+// @Failure     401 {object} data.Error
+// @Failure     500 {object} data.Error
+// @Router      /room/{id} [post]
 func RoomIdPost(ctx *fiber.Ctx) error {
 	id := idConvert(ctx)
 	if id == -1 {

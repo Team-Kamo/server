@@ -32,10 +32,20 @@ definitions:
       name:
         type: string
     type: object
+  data.RoomConnectRequest:
+    properties:
+      name:
+        type: string
+    type: object
   data.RoomCreate:
     properties:
       id:
         type: integer
+    type: object
+  data.RoomCreateRequest:
+    properties:
+      name:
+        type: string
     type: object
   data.Status:
     properties:
@@ -91,7 +101,15 @@ paths:
       - application/json
       - text/xml
       - application/x-www-form-urlencoded
+      - multipart/form-data
       description: Create new room
+      parameters:
+      - description: Room create request
+        in: body
+        name: RoomCreateRequest
+        required: true
+        schema:
+          $ref: '#/definitions/data.RoomCreateRequest'
       responses:
         "200":
           description: OK
@@ -114,6 +132,7 @@ paths:
       - application/json
       - text/xml
       - application/x-www-form-urlencoded
+      - multipart/form-data
       description: Delete room
       parameters:
       - description: Room ID
@@ -140,13 +159,15 @@ paths:
       - application/json
       - text/xml
       - application/x-www-form-urlencoded
+      - multipart/form-data
       description: Get status of the room
       parameters:
-      - description: Room ID
-        in: path
-        name: id
+      - description: RoomCreateRequest
+        in: body
+        name: RoomCreateRequest
         required: true
-        type: integer
+        schema:
+          $ref: '#/definitions/data.RoomCreateRequest'
       produces:
       - application/json
       responses:
@@ -170,8 +191,15 @@ paths:
       - application/json
       - text/xml
       - application/x-www-form-urlencoded
+      - multipart/form-data
       description: Connect device to the room
       parameters:
+      - description: Room connect request
+        in: body
+        name: RoomConnectRequest
+        required: true
+        schema:
+          $ref: '#/definitions/data.RoomConnectRequest'
       - description: Room ID
         in: path
         name: id
@@ -264,6 +292,7 @@ paths:
       - application/json
       - text/xml
       - application/x-www-form-urlencoded
+      - multipart/form-data
       description: Delete content status of the room
       parameters:
       - description: Room ID
@@ -290,6 +319,7 @@ paths:
       - application/json
       - text/xml
       - application/x-www-form-urlencoded
+      - multipart/form-data
       description: Get content status of the room
       parameters:
       - description: Room ID
@@ -320,8 +350,15 @@ paths:
       - application/json
       - text/xml
       - application/x-www-form-urlencoded
+      - multipart/form-data
       description: Set content status of the room
       parameters:
+      - description: Room status
+        in: body
+        name: Status
+        required: true
+        schema:
+          $ref: '#/definitions/data.Status'
       - description: Room ID
         in: path
         name: id

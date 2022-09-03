@@ -11,16 +11,16 @@ import (
 const Status = "room/*/status"
 
 // StatusGet godoc
-// @Summary      Get content status
-// @Description  Get content status of the room
-// @Tags         status
-// @Accept       json,xml,x-www-form-urlencoded
-// @Produce      json
-// @Param        id   path      int  true  "Room ID"
-// @Success      200  {object}  data.Status
-// @Failure      401  {object}  data.Error
-// @Failure      500  {object}  data.Error
-// @Router       /room/{id}/status [get]
+// @Summary     Get content status
+// @Description Get content status of the room
+// @Tags        status
+// @Accept      json,xml,x-www-form-urlencoded,mpfd
+// @Produce     json
+// @Param       id  path     int true "Room ID"
+// @Success     200 {object} data.Status
+// @Failure     401 {object} data.Error
+// @Failure     500 {object} data.Error
+// @Router      /room/{id}/status [get]
 func StatusGet(ctx *fiber.Ctx) error {
 	id := idConvert(ctx)
 	if id == -1 {
@@ -35,15 +35,16 @@ func StatusGet(ctx *fiber.Ctx) error {
 }
 
 // StatusPut godoc
-// @Summary      Set content status
-// @Description  Set content status of the room
-// @Tags         status
-// @Accept       json,xml,x-www-form-urlencoded
-// @Param        id   path      int  true  "Room ID"
-// @Success      200
-// @Failure      401  {object}  data.Error
-// @Failure      500  {object}  data.Error
-// @Router       /room/{id}/status [put]
+// @Summary     Set content status
+// @Description Set content status of the room
+// @Tags        status
+// @Accept      json,xml,x-www-form-urlencoded,mpfd
+// @Param       Status body data.Status true "Room status"
+// @Param       id     path int         true "Room ID"
+// @Success     200
+// @Failure     401 {object} data.Error
+// @Failure     500 {object} data.Error
+// @Router      /room/{id}/status [put]
 func StatusPut(ctx *fiber.Ctx) error {
 	id := idConvert(ctx)
 	if id == -1 {
@@ -84,15 +85,15 @@ func StatusPut(ctx *fiber.Ctx) error {
 }
 
 // StatusDelete godoc
-// @Summary      Delete content status
-// @Description  Delete content status of the room
-// @Tags         status
-// @Accept       json,xml,x-www-form-urlencoded
-// @Param        id   path      int  true  "Room ID"
-// @Success      200
-// @Failure      401  {object}  data.Error
-// @Failure      500  {object}  data.Error
-// @Router       /room/{id}/status [delete]
+// @Summary     Delete content status
+// @Description Delete content status of the room
+// @Tags        status
+// @Accept      json,xml,x-www-form-urlencoded,mpfd
+// @Param       id path int true "Room ID"
+// @Success     200
+// @Failure     401 {object} data.Error
+// @Failure     500 {object} data.Error
+// @Router      /room/{id}/status [delete]
 func StatusDelete(ctx *fiber.Ctx) error {
 	id := idConvert(ctx)
 	if id == -1 {

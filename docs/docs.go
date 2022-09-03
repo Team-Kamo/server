@@ -62,12 +62,24 @@ const docTemplate = `{
                 "consumes": [
                     "application/json",
                     "text/xml",
-                    "application/x-www-form-urlencoded"
+                    "application/x-www-form-urlencoded",
+                    "multipart/form-data"
                 ],
                 "tags": [
                     "create"
                 ],
                 "summary": "Create room",
+                "parameters": [
+                    {
+                        "description": "Room create request",
+                        "name": "RoomCreateRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.RoomCreateRequest"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -96,7 +108,8 @@ const docTemplate = `{
                 "consumes": [
                     "application/json",
                     "text/xml",
-                    "application/x-www-form-urlencoded"
+                    "application/x-www-form-urlencoded",
+                    "multipart/form-data"
                 ],
                 "produces": [
                     "application/json"
@@ -107,11 +120,13 @@ const docTemplate = `{
                 "summary": "Get room status",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "description": "Room ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
+                        "description": "RoomCreateRequest",
+                        "name": "RoomCreateRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.RoomCreateRequest"
+                        }
                     }
                 ],
                 "responses": {
@@ -140,13 +155,23 @@ const docTemplate = `{
                 "consumes": [
                     "application/json",
                     "text/xml",
-                    "application/x-www-form-urlencoded"
+                    "application/x-www-form-urlencoded",
+                    "multipart/form-data"
                 ],
                 "tags": [
                     "room"
                 ],
                 "summary": "Connect to the room",
                 "parameters": [
+                    {
+                        "description": "Room connect request",
+                        "name": "RoomConnectRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.RoomConnectRequest"
+                        }
+                    },
                     {
                         "type": "integer",
                         "description": "Room ID",
@@ -178,7 +203,8 @@ const docTemplate = `{
                 "consumes": [
                     "application/json",
                     "text/xml",
-                    "application/x-www-form-urlencoded"
+                    "application/x-www-form-urlencoded",
+                    "multipart/form-data"
                 ],
                 "tags": [
                     "room"
@@ -319,7 +345,8 @@ const docTemplate = `{
                 "consumes": [
                     "application/json",
                     "text/xml",
-                    "application/x-www-form-urlencoded"
+                    "application/x-www-form-urlencoded",
+                    "multipart/form-data"
                 ],
                 "produces": [
                     "application/json"
@@ -363,13 +390,23 @@ const docTemplate = `{
                 "consumes": [
                     "application/json",
                     "text/xml",
-                    "application/x-www-form-urlencoded"
+                    "application/x-www-form-urlencoded",
+                    "multipart/form-data"
                 ],
                 "tags": [
                     "status"
                 ],
                 "summary": "Set content status",
                 "parameters": [
+                    {
+                        "description": "Room status",
+                        "name": "Status",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.Status"
+                        }
+                    },
                     {
                         "type": "integer",
                         "description": "Room ID",
@@ -401,7 +438,8 @@ const docTemplate = `{
                 "consumes": [
                     "application/json",
                     "text/xml",
-                    "application/x-www-form-urlencoded"
+                    "application/x-www-form-urlencoded",
+                    "multipart/form-data"
                 ],
                 "tags": [
                     "status"
@@ -487,11 +525,27 @@ const docTemplate = `{
                 }
             }
         },
+        "data.RoomConnectRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
         "data.RoomCreate": {
             "type": "object",
             "properties": {
                 "id": {
                     "type": "integer"
+                }
+            }
+        },
+        "data.RoomCreateRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
                 }
             }
         },

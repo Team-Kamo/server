@@ -36,18 +36,18 @@ func init() {
 	log.Info().Msg(config.Msg[config.CurrentConfig.Lang].Console.Starting)
 }
 
-// @title           OctaneServer
-// @version         v1
-// @description     Server-side api of the Octane.
+// @title       OctaneServer
+// @version     v1
+// @description Server-side api of the Octane.
 
-// @contact.name   GitHub
-// @contact.url    https://github.com/Team-Kamo/server
+// @contact.name GitHub
+// @contact.url  https://github.com/Team-Kamo/server
 
-// @BasePath  /api/v1
+// @BasePath /api/v1
 
 // @securityDefinitions.apikey X-Octane-API-Token
-// @in header
-// @name X-Octane-API-Token
+// @in                         header
+// @name                       X-Octane-API-Token
 func main() {
 	app := fiber.New(fiber.Config{
 		AppName:      "octane",
