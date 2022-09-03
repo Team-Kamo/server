@@ -19,6 +19,7 @@ type storage interface {
 	Open() error
 	Save(key string, data []byte) error
 	Delete(key string) error
+	HouseKeeping()
 }
 
 func init() {

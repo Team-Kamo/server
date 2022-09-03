@@ -27,12 +27,13 @@ type DbConfig struct {
 }
 
 type StorageConfig struct {
-	Type      string
-	Uri       string
-	Name      string
-	Endpoint  string
-	AccessKey string
-	SecretKey string
+	Type         string
+	Uri          string
+	Name         string
+	Endpoint     string
+	AccessKey    string
+	SecretKey    string
+	HouseKeeping string
 }
 
 var CurrentConfig Config

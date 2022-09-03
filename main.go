@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	_ "OctaneServer/cron"
 	_ "OctaneServer/docs"
 
 	"github.com/goccy/go-json"

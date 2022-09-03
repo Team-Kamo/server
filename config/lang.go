@@ -22,10 +22,12 @@ type ConsoleErrorStrings struct {
 	FiberResponse       string
 	StorageOpen         string
 	StorageNotSupported string
+	HouseKeeping        string
 }
 
 type APIStrings struct {
-	Error APIErrorStrings
+	HealthTooManyError string
+	Error              APIErrorStrings
 }
 
 type APIErrorStrings struct {
@@ -60,10 +62,12 @@ func loadMsg() {
 				FiberResponse:       "Fiberが要求に返答中にエラーが発生しました。",
 				StorageOpen:         "ストレージを開いている途中にエラーが発生しました。",
 				StorageNotSupported: "その種類のストレージはサポートされていません。",
+				HouseKeeping:        "清掃処理が失敗しました。",
 			},
 		},
 		API: APIStrings{
-			APIErrorStrings{
+			HealthTooManyError: "Internal exception / 1min > ",
+			Error: APIErrorStrings{
 				EmptyRoomName:      "部屋名が空です。",
 				EmptyDeviceName:    "デバイス名が空です。",
 				DupDevice:          "デバイス名が重複しています。",
@@ -90,10 +94,12 @@ func loadMsg() {
 				FiberResponse:       "Error occurred while fiber is responding to the request.",
 				StorageOpen:         "Error occurred while opening storage.",
 				StorageNotSupported: "That kind of storage is not supported.",
+				HouseKeeping:        "Housekeeping job failed.",
 			},
 		},
 		API: APIStrings{
-			APIErrorStrings{
+			HealthTooManyError: "Internal exception / 1min > ",
+			Error: APIErrorStrings{
 				EmptyRoomName:      "Room name is empty.",
 				EmptyDeviceName:    "Device name is empty.",
 				DupDevice:          "Device is duplicated.",

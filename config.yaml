@@ -11,3 +11,4 @@ db:
 storage:
   type: local
   uri: ./uploads
+  housekeeping: 

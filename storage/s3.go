@@ -4,11 +4,13 @@ import (
 	"OctaneServer/config"
 	"bytes"
 	"context"
+	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	awsConfig "github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/rs/zerolog/log"
 )
 
 type S3 struct {
@@ -58,4 +60,30 @@ func (storage *S3) Delete(key string) error {
 		return err
 	}
 	return nil
+}
+
+func (storage *S3) HouseKeeping() {
+	input := &s3.ListObjectsV2Input{
+		Bucket: aws.String(config.CurrentConfig.Storage.Name),
+	}
+	output, err := storage.client.ListObjectsV2(context.TODO(), input)
+	if err != nil {
+		log.Warn().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.HouseKeeping)
+		return
+	}
+	for _, v := range output.Contents {
+		delete := true
+		for _, w := range output.Contents {
+			if strings.HasPrefix(*w.Key, strings.Split(*v.Key, "_")[0]) && v.Key != w.Key && v.LastModified.Before(*w.LastModified) {
+				delete = true
+			}
+		}
+		if delete {
+			err = storage.Delete(*v.Key)
+			if err != nil {
+				log.Warn().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.HouseKeeping)
+				return
+			}
+		}
+	}
 }
