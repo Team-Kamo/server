@@ -3,14 +3,16 @@ module OctaneServer
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.16.13
-	github.com/aws/aws-sdk-go-v2/config v1.17.4
-	github.com/aws/aws-sdk-go-v2/credentials v1.12.17
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.8
+	github.com/aws/aws-sdk-go-v2 v1.16.14
+	github.com/aws/aws-sdk-go-v2/config v1.17.5
+	github.com/aws/aws-sdk-go-v2/credentials v1.12.18
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.9
 	github.com/bwmarrin/snowflake v0.3.0
+	github.com/go-co-op/gocron v1.17.0
 	github.com/goccy/go-json v0.9.11
 	github.com/goccy/go-yaml v1.9.5
 	github.com/gofiber/fiber/v2 v2.37.0
+	github.com/gofiber/swagger v0.1.1
 	github.com/rs/zerolog v1.28.0
 	github.com/swaggo/swag v1.8.5
 	go.etcd.io/bbolt v1.3.6
@@ -23,27 +25,25 @@ require (
 	github.com/PuerkitoBio/purell v1.2.0 // indirect
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
 	github.com/andybalholm/brotli v1.0.4 // indirect
-	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.4.6 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.12.14 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/configsources v1.1.20 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.4.14 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/ini v1.3.21 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/v4a v1.0.11 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.9.7 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.1.15 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.9.14 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.13.14 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sso v1.11.20 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.13.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sts v1.16.16 // indirect
-	github.com/aws/smithy-go v1.13.1 // indirect
+	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.4.7 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.12.15 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/configsources v1.1.21 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.4.15 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/ini v1.3.22 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/v4a v1.0.12 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.9.8 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.1.16 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.9.15 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.13.15 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sso v1.11.21 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.13.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sts v1.16.17 // indirect
+	github.com/aws/smithy-go v1.13.2 // indirect
 	github.com/fatih/color v1.13.0 // indirect
-	github.com/go-co-op/gocron v1.17.0 // indirect
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
 	github.com/go-openapi/jsonreference v0.20.0 // indirect
 	github.com/go-openapi/spec v0.20.7 // indirect
 	github.com/go-openapi/swag v0.22.3 // indirect
-	github.com/gofiber/swagger v0.1.1 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/klauspost/compress v1.15.9 // indirect
