@@ -32,13 +32,13 @@ func (db *Bbolt) Close() error {
 func (db *Bbolt) Drop(table string) error {
 	err := db.Open()
 	if err != nil {
-		log.Fatal().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
+		log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
 		return err
 	}
 	defer func() {
 		err = db.Close()
 		if err != nil {
-			log.Fatal().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
+			log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
 		}
 	}()
 	return db.db.Update(func(tx *bbolt.Tx) error {
@@ -54,13 +54,13 @@ func (db *Bbolt) Delete(table string, key string) error {
 	bKey := []byte(key)
 	err := db.Open()
 	if err != nil {
-		log.Fatal().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
+		log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
 		return err
 	}
 	defer func() {
 		err = db.Close()
 		if err != nil {
-			log.Fatal().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
+			log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
 		}
 	}()
 
@@ -84,13 +84,13 @@ func (db *Bbolt) Get(table string, key string) ([]byte, error) {
 	bKey := []byte(key)
 	err := db.Open()
 	if err != nil {
-		log.Fatal().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
+		log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
 		return nil, err
 	}
 	defer func() {
 		err = db.Close()
 		if err != nil {
-			log.Fatal().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
+			log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
 		}
 	}()
 
@@ -121,13 +121,13 @@ func (db *Bbolt) Insert(table string, key string, data interface{}) error {
 	}
 	err = db.Open()
 	if err != nil {
-		log.Fatal().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
+		log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
 		return err
 	}
 	defer func() {
 		err = db.Close()
 		if err != nil {
-			log.Fatal().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
+			log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.DBOpen)
 		}
 	}()
 	return db.db.Update(func(tx *bbolt.Tx) error {

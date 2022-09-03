@@ -17,7 +17,7 @@ func internalException(ctx *fiber.Ctx, err error) {
 	}
 	err = ctx.Status(500).JSON(errObj)
 	if err != nil {
-		log.Fatal().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.FiberResponse)
+		log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.FiberResponse)
 	}
 }
 
@@ -30,7 +30,7 @@ func idConvert(ctx *fiber.Ctx) int64 {
 		}
 		err = ctx.Status(400).JSON(errObj)
 		if err != nil {
-			log.Fatal().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.FiberResponse)
+			log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.FiberResponse)
 		}
 		return -1
 	}
@@ -53,7 +53,7 @@ func badRequest(ctx *fiber.Ctx, why string) {
 	}
 	err := ctx.Status(400).JSON(errObj)
 	if err != nil {
-		log.Fatal().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.FiberResponse)
+		log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.FiberResponse)
 	}
 }
 
@@ -64,7 +64,7 @@ func genericError(ctx *fiber.Ctx, status int, code string, why string) {
 	}
 	err := ctx.Status(status).JSON(errObj)
 	if err != nil {
-		log.Fatal().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.FiberResponse)
+		log.Error().Err(err).Msg(config.Msg[config.CurrentConfig.Lang].Console.Error.FiberResponse)
 	}
 }
 
