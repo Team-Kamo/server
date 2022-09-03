@@ -118,17 +118,6 @@ const docTemplate = `{
                     "room"
                 ],
                 "summary": "Get room status",
-                "parameters": [
-                    {
-                        "description": "RoomCreateRequest",
-                        "name": "RoomCreateRequest",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/data.RoomCreateRequest"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",

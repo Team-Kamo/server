@@ -16,10 +16,9 @@ var RoomID = "room/*/"
 // @Tags        room
 // @Accept      json,xml,x-www-form-urlencoded,mpfd
 // @Produce     json
-// @Param       RoomCreateRequest body     data.RoomCreateRequest true "RoomCreateRequest"
-// @Success     200               {object} data.Room
-// @Failure     401               {object} data.Error
-// @Failure     500               {object} data.Error
+// @Success     200 {object} data.Room
+// @Failure     401 {object} data.Error
+// @Failure     500 {object} data.Error
 // @Router      /room/{id} [get]
 func RoomIDGet(ctx *fiber.Ctx) error {
 	id := idConvert(ctx)

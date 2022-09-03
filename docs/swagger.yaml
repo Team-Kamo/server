@@ -161,13 +161,6 @@ paths:
       - application/x-www-form-urlencoded
       - multipart/form-data
       description: Get status of the room
-      parameters:
-      - description: RoomCreateRequest
-        in: body
-        name: RoomCreateRequest
-        required: true
-        schema:
-          $ref: '#/definitions/data.RoomCreateRequest'
       produces:
       - application/json
       responses:
