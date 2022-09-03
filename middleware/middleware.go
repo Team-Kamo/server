@@ -6,10 +6,14 @@ import (
 	"OctaneServer/definitions"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/rs/zerolog/log"
 )
 
 func New() fiber.Handler {
 	return func(c *fiber.Ctx) error {
+		if config.CurrentConfig.Debug {
+			log.Debug().Str("body", c.Request().String()).Msg("Got request")
+		}
 		if len(config.CurrentConfig.Token) == 0 {
 			return c.Next()
 		}
