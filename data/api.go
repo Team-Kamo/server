@@ -19,7 +19,8 @@ type RoomCreate struct {
 }
 
 type RoomConnectRequest struct {
-	Name string `json:"name" xml:"name" form:"name"`
+	Name    string `json:"name" xml:"name" form:"name"`
+	Request string `json:"request" xml:"request" form:"request"`
 }
 
 type Room struct {

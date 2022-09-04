@@ -20,4 +20,7 @@ const (
 	File      = "file"
 	//Headers
 	HeaderToken = "X-Octane-API-Token"
+	//Connect requests
+	RequestConnect    = "connect"
+	RequestDisconnect = "disconnect"
 )

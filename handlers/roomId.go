@@ -57,8 +57,8 @@ func RoomIDDelete(ctx *fiber.Ctx) error {
 }
 
 // RoomIDPost godoc
-// @Summary     Connect to the room
-// @Description Connect device to the room
+// @Summary     Connect or disconnect to/from the room
+// @Description Connect or disconnect device to/from the room
 // @Tags        room
 // @Accept      json,xml,x-www-form-urlencoded,mpfd
 // @Param       RoomConnectRequest body data.RoomConnectRequest true "Room connect request"
@@ -89,14 +89,30 @@ func RoomIdPost(ctx *fiber.Ctx) error {
 			break
 		}
 	}
-	if exists {
-		genericError(ctx, 400, definitions.ERR_DUP_DEVICE, config.Msg[config.CurrentConfig.Lang].API.Error.DupDevice)
-		return nil
-	}
-	err = data.ConnectRoom(req.Name, id)
-	ok = entryCheck(ctx, err, definitions.ERR_NO_SUCH_ROOM)
-	if !ok {
-		return nil
+	if req.Request == definitions.RequestConnect {
+		if exists {
+			genericError(ctx, 400, definitions.ERR_DUP_DEVICE, config.Msg[config.CurrentConfig.Lang].API.Error.DupDevice)
+			return nil
+		} else {
+			err = data.ConnectRoom(req.Name, id)
+			ok = entryCheck(ctx, err, definitions.ERR_NO_SUCH_ROOM)
+			if !ok {
+				return nil
+			}
+			return nil
+		}
+	} else if req.Request == definitions.RequestDisconnect {
+		if exists {
+			err = data.DisconnectRoom(req.Name, id)
+			ok = entryCheck(ctx, err, definitions.ERR_NO_SUCH_ROOM)
+			if !ok {
+				return nil
+			}
+			return nil
+		} else {
+			genericError(ctx, 400, definitions.ERR_DEVICE_NOT_CONNECTED, config.Msg[config.CurrentConfig.Lang].API.Error.DeviceNotConnected)
+			return nil
+		}
 	}
 	return nil
 }

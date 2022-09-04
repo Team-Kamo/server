@@ -140,7 +140,7 @@ const docTemplate = `{
                 }
             },
             "post": {
-                "description": "Connect device to the room",
+                "description": "Connect or disconnect device to/from the room",
                 "consumes": [
                     "application/json",
                     "text/xml",
@@ -150,7 +150,7 @@ const docTemplate = `{
                 "tags": [
                     "room"
                 ],
-                "summary": "Connect to the room",
+                "summary": "Connect or disconnect to/from the room",
                 "parameters": [
                     {
                         "description": "Room connect request",
@@ -518,6 +518,9 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "name": {
+                    "type": "string"
+                },
+                "request": {
                     "type": "string"
                 }
             }

@@ -2,12 +2,15 @@ package data
 
 import (
 	"OctaneServer/config"
+	"errors"
 	"strconv"
 	"time"
 
 	"github.com/goccy/go-json"
 	"github.com/rs/zerolog/log"
 )
+
+var ErrNoSuchDevice = errors.New("no such device")
 
 func NewRoom(name string) (int64, error) {
 	var (
@@ -67,5 +70,32 @@ func ConnectRoom(name string, id int64) error {
 	if err != nil {
 		return err
 	}
+	return nil
+}
+
+func DisconnectRoom(name string, id int64) error {
+	room, err := GetRoom(id)
+	if err != nil {
+		return err
+	}
+	devices := []Device{}
+	found := false
+	for _, v := range room.Devices {
+		if v.Name != name {
+			devices = append(devices, v)
+		} else {
+			found = true
+		}
+	}
+	if found {
+		room.Devices = devices
+		err = db.Update(TableRooms, strconv.FormatInt(id, 10), devices)
+		if err != nil {
+			return err
+		}
+	} else {
+		return ErrNoSuchDevice
+	}
+
 	return nil
 }

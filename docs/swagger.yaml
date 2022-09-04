@@ -36,6 +36,8 @@ definitions:
     properties:
       name:
         type: string
+      request:
+        type: string
     type: object
   data.RoomCreate:
     properties:
@@ -185,7 +187,7 @@ paths:
       - text/xml
       - application/x-www-form-urlencoded
       - multipart/form-data
-      description: Connect device to the room
+      description: Connect or disconnect device to/from the room
       parameters:
       - description: Room connect request
         in: body
@@ -209,7 +211,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/data.Error'
-      summary: Connect to the room
+      summary: Connect or disconnect to/from the room
       tags:
       - room
   /room/{id}/content:
