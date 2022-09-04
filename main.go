@@ -72,14 +72,8 @@ func main() {
 		Root: http.Dir("./uploads"),
 	}))
 	app.Use(limiter.New(limiter.Config{
-		Max:                    10,
-		Expiration:             1 * time.Second,
-		SkipSuccessfulRequests: true,
-	}))
-	app.Use(limiter.New(limiter.Config{
-		Max:                60,
-		Expiration:         1 * time.Second,
-		SkipFailedRequests: true,
+		Max:        60,
+		Expiration: 1 * time.Second,
 	}))
 	app.Get("/swagger/*", swagger.HandlerDefault)
 	app.Get(config.CurrentConfig.Root+handlers.Health, handlers.HealthGet)

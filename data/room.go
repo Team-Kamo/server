@@ -45,6 +45,7 @@ func GetRoom(id int64) (Room, error) {
 	if err != nil {
 		return room, err
 	}
+	log.Debug().Bytes("result", result).Msg("GetRoom: Returned result")
 	err = json.Unmarshal(result, &room)
 	if err != nil {
 		return room, err

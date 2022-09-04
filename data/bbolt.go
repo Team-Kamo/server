@@ -110,7 +110,11 @@ func (db *Bbolt) Get(table string, key string) ([]byte, error) {
 		return nil, err
 	}
 
-	return result, err
+	resultTmp := make([]byte, len(result))
+	copy(resultTmp, result)
+	log.Debug().Bytes("result", result).Msg("bbolt original result")
+	log.Debug().Bytes("resultTmp", resultTmp).Msg("bbolt copied result")
+	return resultTmp, err
 }
 
 func (db *Bbolt) Insert(table string, key string, data interface{}) error {
