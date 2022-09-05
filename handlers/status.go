@@ -76,6 +76,32 @@ func StatusPut(ctx *fiber.Ctx) error {
 		genericError(ctx, 400, definitions.ERR_BAD_HASH, config.Msg[config.CurrentConfig.Lang].API.Error.BadHash)
 		return nil
 	}
+	switch req.Type {
+	case definitions.Clipboard:
+		ok := false
+		for _, v := range definitions.TypeClipboard {
+			if v == req.Mime {
+				ok = true
+			}
+		}
+		if !ok {
+			genericError(ctx, 400, definitions.ERR_BAD_MIME, config.Msg[config.CurrentConfig.Lang].API.Error.MimeNotAccepted)
+			return nil
+		}
+	case definitions.File:
+		//Do nothing
+	case definitions.MultiFile:
+		ok := false
+		for _, v := range definitions.TypeMultiFile {
+			if v == req.Mime {
+				ok = true
+			}
+		}
+		if !ok {
+			genericError(ctx, 400, definitions.ERR_BAD_MIME, config.Msg[config.CurrentConfig.Lang].API.Error.MimeNotAccepted)
+			return nil
+		}
+	}
 	err = data.SetStatus(id, req)
 	ok = entryCheck(ctx, err, definitions.ERR_NO_SUCH_ROOM)
 	if !ok {

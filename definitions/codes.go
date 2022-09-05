@@ -12,15 +12,25 @@ const (
 	ERR_CONTENT_MISMATCH     = "ERR_CONTENT_MISMATCH"     // Content crc hash or mime is wrong
 	ERR_BAD_HASH             = "ERR_BAD_HASH"             // Hash style is wrong
 	ERR_UNAUTHORIZED         = "ERR_UNAUTHORIZED"         // Bad token
+	ERR_BAD_MIME             = "ERR_BAD_MIME"             //Mime type is not accepted
 	//Enum
 	Faulty    = "faulty"
 	Degraded  = "degraded"
 	Healthy   = "healthy"
 	Clipboard = "clipboard"
 	File      = "file"
+	MultiFile = "multi-file"
 	//Headers
 	HeaderToken = "X-Octane-API-Token"
 	//Connect requests
 	RequestConnect    = "connect"
 	RequestDisconnect = "disconnect"
 )
+
+var TypeClipboard []string
+var TypeMultiFile []string
+
+func init() {
+	TypeClipboard = []string{"text/plain;charset=utf-8", "text/plain"}
+	TypeMultiFile = []string{"application/x-lzma", "application/x-7z-compressed"}
+}
