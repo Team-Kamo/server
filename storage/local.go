@@ -16,7 +16,7 @@ func (storage *Local) Open() error {
 }
 
 func (storage *Local) Save(key string, data []byte) error {
-	err := os.Mkdir("uploads", 0777)
+	err := os.MkdirAll("uploads", 0777)
 	if err != nil {
 		return err
 	}
