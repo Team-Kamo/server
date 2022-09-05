@@ -7,6 +7,7 @@ import (
 	"OctaneServer/middleware"
 	"net/http"
 	"os"
+	"time"
 
 	_ "OctaneServer/cron"
 	_ "OctaneServer/docs"
@@ -61,7 +62,6 @@ func main() {
 		app.Use(pprof.New())
 		app.Get("/metrics", monitor.New(monitor.Config{Title: "Metrics"}))
 	}
-	app.Use(limiter.New())
 	app.Use(compress.New())
 	app.Use(recover.New())
 	app.Use(etag.New())
@@ -70,10 +70,10 @@ func main() {
 	app.Use(config.CurrentConfig.Root+"uploads", filesystem.New(filesystem.Config{
 		Root: http.Dir("./uploads"),
 	}))
-	// app.Use(limiter.New(limiter.Config{
-	// 	Max:        120,
-	// 	Expiration: 30 * time.Second,
-	// }))
+	app.Use(limiter.New(limiter.Config{
+		Max:        20,
+		Expiration: 10 * time.Second,
+	}))
 	app.Get("/swagger/*", swagger.HandlerDefault)
 	app.Get(config.CurrentConfig.Root+handlers.Health, handlers.HealthGet)
 	app.Post(config.CurrentConfig.Root+handlers.Room, handlers.RoomPost)
