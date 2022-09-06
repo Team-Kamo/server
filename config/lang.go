@@ -40,6 +40,7 @@ type APIErrorStrings struct {
 	MimeMismatch       string
 	MimeNotAccepted    string
 	Unauthorized       string
+	ConnectionRequest  string
 }
 
 var (
@@ -78,6 +79,7 @@ func loadMsg() {
 				MimeMismatch:       "ヘッダのmimeとステータスに記述されているmimeが一致しません。",
 				Unauthorized:       "トークンが不正です。",
 				MimeNotAccepted:    "そのmimeタイプはサポートされていません。",
+				ConnectionRequest:  "接続リクエストが不正です。",
 			},
 		},
 	}
@@ -111,6 +113,7 @@ func loadMsg() {
 				MimeMismatch:       "Mismatch detected between header mime and status mime.",
 				Unauthorized:       "Invalid token supplied.",
 				MimeNotAccepted:    "Mimetype is not supported.",
+				ConnectionRequest:  "Connection request is invalid.",
 			},
 		},
 	}

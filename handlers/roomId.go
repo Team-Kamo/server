@@ -114,5 +114,6 @@ func RoomIdPost(ctx *fiber.Ctx) error {
 			return nil
 		}
 	}
+	genericError(ctx, 400, definitions.ERR_BAD_CONNECTION_REQUEST, config.Msg[config.CurrentConfig.Lang].API.Error.ConnectionRequest)
 	return nil
 }

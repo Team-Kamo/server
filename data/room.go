@@ -89,7 +89,7 @@ func DisconnectRoom(name string, id int64) error {
 	}
 	if found {
 		room.Devices = devices
-		err = db.Update(TableRooms, strconv.FormatInt(id, 10), devices)
+		err = db.Update(TableRooms, strconv.FormatInt(id, 10), room)
 		if err != nil {
 			return err
 		}
