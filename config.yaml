@@ -6,7 +6,7 @@ root: /api/v1/
 token: []
 db:
   type: bbolt
-  uri: db/bbolt.db
+  uri: bbolt.db
   name: octane
 storage:
   type: local
