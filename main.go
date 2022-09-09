@@ -50,12 +50,19 @@ func init() {
 // @in                         header
 // @name                       X-Octane-API-Token
 func main() {
+	limit := 0
+	if config.CurrentConfig.BodyLimit < 0 {
+		limit = -1
+	} else {
+		limit = config.CurrentConfig.BodyLimit * 1024 * 1024
+	}
 	app := fiber.New(fiber.Config{
 		AppName:      "octane",
 		ServerHeader: "OctaneServer/v1",
 		Prefork:      true,
 		JSONEncoder:  json.Marshal,
 		JSONDecoder:  json.Unmarshal,
+		BodyLimit:    limit,
 	})
 
 	if config.CurrentConfig.Debug {

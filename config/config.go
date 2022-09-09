@@ -15,6 +15,7 @@ type Config struct {
 	Lang      string
 	LogFormat string
 	Root      string
+	BodyLimit int
 	Db        DbConfig
 	Storage   StorageConfig
 	Token     []string
